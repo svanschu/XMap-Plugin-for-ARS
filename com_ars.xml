@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<install type="xmap_ext" version="1.5.0">
+        <name>Akeeba Release System Plugin</name>
+        <author>Sven Schultschik</author>
+        <creationDate>Aug 2011</creationDate>
+        <copyright>GNU GPL</copyright>
+        <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+        <authorEmail>sven@schultschik.de</authorEmail>
+        <authorUrl>http://www.schultschik.de</authorUrl>
+        <version>1.0.0</version>
+        <description>Plugin for Akeeba Release System component</description>
+        <files>
+                <filename xmap_ext="com_ars">com_ars.php</filename>
+        </files>
+        <params>
+                <param name="cat_priority" type="list" default="-1" label="Category Priority" description="Set the priority for the categories">
+                        <option value="-1">Use Parent Menu Settings</option>
+                        <option value="0.0">0.0</option>
+                        <option value="0.1">0.1</option>
+                        <option value="0.2">0.2</option>
+                        <option value="0.3">0.3</option>
+                        <option value="0.4">0.4</option>
+                        <option value="0.5">0.5</option>
+                        <option value="0.6">0.6</option>
+                        <option value="0.7">0.7</option>
+                        <option value="0.8">0.8</option>
+                        <option value="0.9">0.9</option>
+                        <option value="1">1</option>
+                </param>
+                <param name="cat_changefreq" type="list" default="-1" label="Category Change frequency" description="Set the change frequency for the categories">
+                        <option value="-1">Use Parent Menu Settings</option>
+                        <option value="always">Always</option>
+                        <option value="hourly">Hourly</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                        <option value="never">Never</option>
+                </param>
+                <param name="releases_priority" type="list" default="-1" label="Releases Priority" description="Set the priority for the releases">
+                        <option value="-1">Use Parent Menu Settings</option>
+                        <option value="0.0">0.0</option>
+                        <option value="0.1">0.1</option>
+                        <option value="0.2">0.2</option>
+                        <option value="0.3">0.3</option>
+                        <option value="0.4">0.4</option>
+                        <option value="0.5">0.5</option>
+                        <option value="0.6">0.6</option>
+                        <option value="0.7">0.7</option>
+                        <option value="0.8">0.8</option>
+                        <option value="0.9">0.9</option>
+                        <option value="1">1</option>
+                </param>
+                <param name="releases_changefreq" type="list" default="-1" label="Releases Change frequency" description="Set the change frequency for the releases">
+                        <option value="-1">Use Parent Menu Settings</option>
+                        <option value="always">Always</option>
+                        <option value="hourly">Hourly</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                        <option value="never">Never</option>
+                </param>
+                <param name="@spacer" type="spacer" default="" label="XML Sitemap" description="Options for the XML sitemap only" />
+                <param name="include_items" type="list" default="1" label="Show Items" description="Should we include pictures into the sitemap?">
+                        <option value="0">Never</option>
+                        <option value="1">Always</option>
+                        <option value="2">In XML Sitemap Only</option>
+                        <option value="3">In HTML Sitemap Only</option>
+				</param>
+                <param name="max_items" type="text" default="" label="Max Items" description="Max number of Items per Release to include on sitemap (Leave empty for no limit)" />
+                <param name="items_priority" type="list" default="-1" label="Items Priority" description="Set the priority for the items">
+                        <option value="-1">Use Parent Menu Settings</option>
+                        <option value="0.0">0.0</option>
+                        <option value="0.1">0.1</option>
+                        <option value="0.2">0.2</option>
+                        <option value="0.3">0.3</option>
+                        <option value="0.4">0.4</option>
+                        <option value="0.5">0.5</option>
+                        <option value="0.6">0.6</option>
+                        <option value="0.7">0.7</option>
+                        <option value="0.8">0.8</option>
+                        <option value="0.9">0.9</option>
+                        <option value="1">1</option>
+                </param>
+                <param name="items_changefreq" type="list" default="-1" label="Items Change frequency" description="Set the change frequency for the items">
+                        <option value="-1">Use Parent Menu Settings</option>
+                        <option value="always">Always</option>
+                        <option value="hourly">Hourly</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                        <option value="never">Never</option>
+                </param>
+        </params>
+</install>
