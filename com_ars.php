@@ -7,6 +7,7 @@
 * @license GNU/GPL
 * @description Xmap plugin for Akeeba Release System Component.
 */
+defined( '_JEXEC' ) or die();
 
 class xmap_com_ars {
 
