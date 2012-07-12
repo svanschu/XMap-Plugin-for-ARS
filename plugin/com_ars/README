@@ -1,7 +1,5 @@
 XMap Plugin for Akeeba Release System
 
-The Plugin is made for XMap Version 1.2.x
+The Plugin is made for XMap Version 2.2.x and Joomla 2.5.x or greater.
 
 This Plugin will show your categories, releases and items in your sitemap.
-
-Install it with the XMap installer. Do not use the Joomla! installer.
