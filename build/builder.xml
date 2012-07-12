@@ -7,7 +7,7 @@
     - Sourcefiles -Dsrc=./..
 -->
 <project name="swsetgroup" default="build">
-    <property name="extension_name" value="kunenatex" />
+    <property name="extension_name" value="com_ars" />
     <!-- Version number of build -->
     <property name="build.version" value="0.0.0" override="true" />
     <!-- get the date for build -->
