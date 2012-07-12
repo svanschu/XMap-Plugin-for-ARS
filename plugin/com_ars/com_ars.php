@@ -2,7 +2,6 @@
 /**
 * @author Sven Schultschik, http://www.schultschik.de
 * @email sven@schultschik.de
-* @version $Id: $
 * @package Xmap
 * @license GNU/GPL
 * @description Xmap plugin for Akeeba Release System Component.
@@ -96,11 +95,14 @@ class xmap_com_ars {
     function getCategoryTree ( &$xmap, &$parent, &$params, $layout)
     {
         $db =& JFactory::getDBO();
-        $list = array();
         if (!empty($layout)) {
-			$layout = " AND type='".$db->getEscaped($layout)."'";
+			$layout = " AND type='{$db->escape($layout)}'";
 		}
-        $query = "SELECT id, title FROM #__ars_categories WHERE published = '1' ".$layout." AND access <=".$db->getEscaped($xmap->gid)." ORDER BY ordering";
+        $query = $db->getQuery(true);
+        $query->select('id, title')
+            ->from('#__ars_categories')
+            ->where("published=1".$layout)
+            ->order("title");
         $db->setQuery($query);
         $cats = $db->loadObjectList();
         $xmap->changeLevel(1);
@@ -113,7 +115,7 @@ class xmap_com_ars {
 	        $node->name = $cat->title;
 	        $node->priority   = $params['cat_priority'];
 	        $node->changefreq = $params['cat_changefreq'];
-	        $node->link = 'index.php?option=com_ars&amp;view=category&amp;id='.$cat->id;
+	        $node->link = 'index.php?option=com_ars&amp;view=category&amp;id='.$cat->id.'&Itemid='.$parent->id;
 	        $node->expandible = true;
 
 	        if ($xmap->printNode($node) !== FALSE ) {
@@ -136,12 +138,12 @@ class xmap_com_ars {
     {
 		// Now the Releases
 		$db =& JFactory::getDBO();
-		$query = "SELECT id, version
-			FROM #__ars_releases
-			WHERE category_id =".$db->getEscaped($catid)
-			." AND published = '1'
-			AND access <=".$db->getEscaped($xmap->gid).
-			" ORDER BY ordering ";
+        $query = $db->getQuery(true);
+        $query->select('id, version')
+            ->from('#__ars_releases')
+            ->where('category_id='.$db->escape($catid))
+        ->where("published =1")
+        ->order('version');
         $db->setQuery ($query);
 	    $cats = $db->loadObjectList();
 	    $xmap->changeLevel(1);
@@ -152,7 +154,7 @@ class xmap_com_ars {
 		    $node->name = $release->version;
 		    $node->priority   = $params['releases_priority'];
 		    $node->changefreq = $params['releases_changefreq'];
-		    $node->link = 'index.php?option=com_ars&amp;view=release&amp;id='.$release->id;
+		    $node->link = 'index.php?option=com_ars&amp;view=release&amp;id='.$release->id.'&Itemid='.$parent->id;
 		    $node->expandible = true;
 
 		    if ($xmap->printNode($node) !== FALSE && $params['include_items']) {
@@ -175,15 +177,14 @@ class xmap_com_ars {
 		// Now the Releases
 		$db =& JFactory::getDBO();
 		if (!empty($params['limit'])) {
-			$params['limit'] = "LIMIT ".$db->getEscaped($params['limit']);
+			$params['limit'] = "LIMIT ".$db->escape($params['limit']);
 		}
-		$query = "SELECT id, title, filename
-			FROM #__ars_items
-			WHERE release_id =".$db->getEscaped($rid)
-			." AND published = '1'
-			AND access <=".$db->getEscaped($xmap->gid).
-			" ORDER BY ordering "
-			. $params['limit'];
+        $query = $db->getQuery(true);
+        $query->select('id, title, filename')
+            ->from('#__ars_items')
+            ->where('release_id='.$db->escape($rid))
+            ->where('published = 1')
+            ->order('title');
         $db->setQuery ($query);
 	    $cats = $db->loadObjectList();
 	    $xmap->changeLevel(1);
@@ -194,7 +195,7 @@ class xmap_com_ars {
 		    $node->name = $file->title;
 		    $node->priority   = $params['items_priority'];
 		    $node->changefreq = $params['items_changefreq'];
-		    $node->link = 'index.php?option=com_ars&amp;view=download&amp;format=raw&amp;id='.$file->id;
+		    $node->link = 'index.php?option=com_ars&amp;view=download&amp;format=raw&amp;id='.$file->id.'&Itemid='.$parent->id;
 		    $node->expandible = false;
 		    $xmap->printNode($node);
 	    }
